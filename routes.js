@@ -43,7 +43,7 @@ const requestRoutes = (req , res) => {
     let body = ''
 
     req.on('data', (chunk) => {
-      body += chunk.toString()
+    body += chunk.toString()
     });
 
     req.on('end', function() {
@@ -80,19 +80,19 @@ const requestRoutes = (req , res) => {
         const index = movies.findIndex(m => m.id === id)
 
         if (index === -1) {
-        res.writeHead(404)
-        return res.end('Movie not found')
+            res.writeHead(404)
+            return res.end('Movie not found')
         }
 
-    const deletedMovie = movies.splice(index, 1)
-    saveMovies(movies);
-
-    res.writeHead(200, { 'Content-Type': 'application/json' })
-    return res.end(JSON.stringify(deletedMovie))
+        const deletedMovie = movies.splice(index, 1)
+        saveMovies(movies);
+    
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        return res.end(JSON.stringify(deletedMovie))
   }
 
-    res.writeHead(404)
-    res.end('Not Found')
+        res.writeHead(404)
+        res.end('Not Found')
 }
 
 module.exports = requestRoutes
